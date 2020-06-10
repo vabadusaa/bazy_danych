@@ -25,8 +25,8 @@ create table koncert(
 
     Id serial primary key,
     nazwa varchar(60) not null,
-    miejsce varchar(60) not null,
     czas TIMESTAMP not null,
+    miejsce varchar(60) not null,
     cena_koncertu float,
 
     Id_wykonawcy int references wykonawca(Id) not null
