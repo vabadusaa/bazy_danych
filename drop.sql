@@ -1,6 +1,6 @@
-drop table wykonuje;
-drop table bilet;
-drop table klient;
-drop table koncert;
-drop table wykonawca;
-drop table agencja_koncertowa;
+drop table wykonuje cascade;
+drop table bilet cascade;
+drop table klient cascade;
+drop table koncert cascade;
+drop table wykonawca cascade;
+drop table agencja_koncertowa cascade;
