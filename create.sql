@@ -24,7 +24,6 @@ create table wykonawca(
 create table koncert(
 
     Id serial primary key,
-    data_koncertu TIMESTAMP not null,
     nazwa varchar(60) not null,
     miejsce varchar(60) not null,
     czas TIMESTAMP not null,

@@ -12,11 +12,11 @@ INSERT INTO wykonawca (Id, data_urodzenia, imie, nazwisko, pseudonim, Id_agencji
 INSERT INTO wykonawca (Id, data_urodzenia, imie, nazwisko, pseudonim, Id_agencji) VALUES (5, '2001-03-16', 'Callum', 'Owen','Redguy', 2);
 
 
-INSERT INTO koncert (Id, data_koncertu, czas, miejsce, cena_koncertu) VALUES (1, '2019-07-04', '20:00:00', 'Gdańsk', '119.99');
-INSERT INTO koncert (Id, data_koncertu, czas, miejsce, cena_koncertu) VALUES (2, '2019-06-25', '19:00:00', 'Warszawa', '209.99');
-INSERT INTO koncert (Id, data_koncertu, czas, miejsce, cena_koncertu) VALUES (3, '2019-12-05', '21:00:00', 'Poznań', '79.99');
-INSERT INTO koncert (Id, data_koncertu, czas, miejsce, cena_koncertu) VALUES (4, '2019-10-13', '20:30:00', 'Słupsk', '159.99');
-INSERT INTO koncert (Id, data_koncertu, czas, miejsce, cena_koncertu) VALUES (5, '2019-08-22', '19:45:00', 'Sopot', '59.99');
+INSERT INTO koncert (Id, czas, miejsce, cena_koncertu) VALUES (1, '2019-07-04 20:00:00', 'Gdańsk', '119.99');
+INSERT INTO koncert (Id, czas, miejsce, cena_koncertu) VALUES (2, '2019-06-25 19:00:00', 'Warszawa', '209.99');
+INSERT INTO koncert (Id, czas, miejsce, cena_koncertu) VALUES (3, '2019-12-05 21:00:00', 'Poznań', '79.99');
+INSERT INTO koncert (Id, czas, miejsce, cena_koncertu) VALUES (4, '2019-10-1320:30:00', 'Słupsk', '159.99');
+INSERT INTO koncert (Id, czas, miejsce, cena_koncertu) VALUES (5, '2019-08-22 19:45:00', 'Sopot', '59.99');
 
 
 INSERT INTO klient (Id, data_urodzenia, imie, nazwisko, email) VALUES (1, '1900-07-24', 'Jan', 'Król', 'krol123@gmail.com');
