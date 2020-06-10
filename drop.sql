@@ -1,3 +1,4 @@
+drop table wykonuje;
 drop table bilet;
 drop table klient;
 drop table koncert;
