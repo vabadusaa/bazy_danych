@@ -1,70 +1,85 @@
 SET client_encoding='utf-8';
 
-create table agencja_koncertowa(
-
-    Id serial primary key,
-    nazwa varchar(30) not null,
-    email varchar(40),
-    adres varchar(40) not null
-
+create table agencja
+(
+    id                          serial                       ,
+    nazwa                       varchar(32)          NOT NULL,
+    email                       varchar(64)          NOT NULL,
+    adres                       varchar(64)                  ,
+    CONSTRAINT                  agencja_id_pk PRIMARY KEY(id)
 );
 
-create table wykonawca(
-
-    Id serial primary key,
-    imie varchar(20) not null,
-    nazwisko varchar(20) not null,
-    pseudonim varchar(30),
-    data_urodzenia date not null,
-
-    Id_agencji int references agencja_koncertowa(Id) not null
-
+create table wykonawca
+(
+    id                          serial                       ,
+    data_urodzenia              date                         ,
+    imie                        varchar(20)                  ,
+    nazwisko                    varchar(25)          NOT NULL,
+    pseudonim                   varchar(15)          NOT NULL,
+    agencja_id                  int                          ,
+    CONSTRAINT                  wykonawca_id_pk PRIMARY KEY(id),
+    CONSTRAINT                  agencja_id_fk FOREIGN KEY (agencja_id)
+	                               REFERENCES agencja(id)
+                                ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-create table koncert(
-
-    Id serial primary key,
-    nazwa varchar(60) not null,
+create table koncert
+(
+    id                          serial                       ,
+    data_koncertu               date                 NOT NULL,
     czas TIMESTAMP not null,
-    miejsce varchar(60) not null,
-    cena_koncertu float,
-
-    Id_wykonawcy int references wykonawca(Id) not null
-
+    miejsce                     varchar(40)          NOT NULL,
+    cena_koncertu               float                  NOT NULL,
+    CONSTRAINT                  wystep_id_pk PRIMARY KEY(id)
 );
 
-create table klient(
-
-    Id serial primary key,
-    data_urodzenia DATE not null,
-    imie varchar(20) not null,
-    nazwisko varchar(20) not null,
-    email varchar(50) not null
-    
+create table klient
+(
+    id                          serial                       ,
+    data_urodzenia              date                         ,
+    imie                        varchar(20)                  ,
+    nazwisko                    varchar(25)          NOT NULL,
+    email                       varchar(32)          NOT NULL,
+    CONSTRAINT                  klient_id_pk PRIMARY KEY(id),
+    CONSTRAINT                  klient_email_un UNIQUE(email)
 );
 
-
-create table bilet(
-
-    Id serial primary key,
-    Cena float,
-
-    Id_koncert int references koncert(Id) not null,
-    Id_agencji int references agencja_koncertowa(Id) not null,
-    Id_klienta int references klient(Id) not null
+create table bilet
+(
+    id                          serial                       ,
+    agencja_id                  int                  NOT NULL,
+    koncert_id                  int                  NOT NULL,
+    klient_id                   int                  NOT NULL,
+    CONSTRAINT                  bilet_id_pk PRIMARY KEY(id),
+    CONSTRAINT                  agencja_id_fk FOREIGN KEY(agencja_id)
+					    REFERENCES agencja(id)
+                                    ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT                  koncert_id_fk FOREIGN KEY(koncert_id)
+				            REFERENCES koncert(id)
+                                    ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT                   klient_id_fk FOREIGN KEY(klient_id)
+					    REFERENCES klient(id)
+                                    ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 create table wykonuje
 (
-    id_koncert                int                 NOT NULL,
-    id_wykonawca               int                 NOT NULL,
+    koncert_id                 int                 NOT NULL,
+    wykonawca_id               int                 NOT NULL,
     CONSTRAINT                 wykonuje_pk
-                                   PRIMARY KEY(id_koncert, id_wykonawca),
-    CONSTRAINT                  wykonuje_id_koncert_fk
-                                   FOREIGN KEY(id_koncert)
+                                   PRIMARY KEY(koncert_id, wykonawca_id),
+    CONSTRAINT                  wykonuje_koncert_id_fk
+                                   FOREIGN KEY(koncert_id)
                                    REFERENCES koncert(id)
                                    ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT                  wykonuje_id_wykonawca_fk
-                                   FOREIGN KEY(id_wykonawca)
+    CONSTRAINT                  wykonuje_wykonawca_id_fk
+                                   FOREIGN KEY(wykonawca_id)
                                    REFERENCES wykonawca(id)
                                    ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+-- drop table wykonuje;
+-- drop table bilet;
+-- drop table koncert;
+-- drop table klient;
+-- drop table bilet;
