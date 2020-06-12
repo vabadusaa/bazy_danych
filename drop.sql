@@ -1,6 +1,6 @@
-DROP TABLE wykonuje cascade;
-DROP TABLE bilet cascade;
-DROP TABLE klient cascade;
-DROP TABLE koncert cascade;
-DROP TABLE wykonawca cascade;
-DROP TABLE agencja cascade;
+DROP TABLE wykonuje;
+DROP TABLE bilet;
+DROP TABLE klient;
+DROP TABLE koncert;
+DROP TABLE wykonawca;
+DROP TABLE agencja;

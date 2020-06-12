@@ -27,7 +27,7 @@ create table koncert
 (
     id                          serial                       ,
     data_koncertu               date                 NOT NULL,
-    czas TIMESTAMP not null,
+    czas                        time                 NOT NULL,
     miejsce                     varchar(40)          NOT NULL,
     cena_koncertu               float                  NOT NULL,
     CONSTRAINT                  wystep_id_pk PRIMARY KEY(id)
@@ -49,7 +49,7 @@ create table bilet
     id                          serial                       ,
     agencja_id                  int                  NOT NULL,
     koncert_id                  int                  NOT NULL,
-    klient_id                   int                  NOT NULL,
+    klient_id                   int                      NULL,
     CONSTRAINT                  bilet_id_pk PRIMARY KEY(id),
     CONSTRAINT                  agencja_id_fk FOREIGN KEY(agencja_id)
 					    REFERENCES agencja(id)
@@ -64,7 +64,7 @@ create table bilet
 
 create table wykonuje
 (
-    koncert_id                 int                 NOT NULL,
+    koncert_id                 int                  NULL,
     wykonawca_id               int                 NOT NULL,
     CONSTRAINT                 wykonuje_pk
                                    PRIMARY KEY(koncert_id, wykonawca_id),
